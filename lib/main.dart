@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
                 name: 'Oeschinen Lake Campground',
                 location: 'Kandersteg, Switzerland',
               ),
+              ButtonSection(),
             ],
           ),
         ),
@@ -61,6 +62,62 @@ class TitleSection extends StatelessWidget {
           const Text('41'),
         ],
       ),
+    );
+  }
+}
+
+class ButtonSection extends StatelessWidget {
+  const ButtonSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final Color color = Theme.of(context).primaryColor;
+    return SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          ButtonWithText(color: color, icon: Icons.call, label: 'CALL'),
+          ButtonWithText(color: color, icon: Icons.near_me, label: 'ROUTE'),
+          ButtonWithText(color: color, icon: Icons.share, label: 'SHARE'),
+        ],
+      ),
+    );
+  }
+}
+
+class ButtonWithText extends StatelessWidget {
+  const ButtonWithText({
+    super.key,
+    required this.color,
+    required this.icon,
+    required this.label,
+  });
+
+  final Color color;
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize:
+          MainAxisSize.min, // Keeps the column size to the minimum needed
+      mainAxisAlignment: MainAxisAlignment.center, // Centers items vertically
+      children: [
+        Icon(icon, color: color), // Display the icon
+        Padding(
+          padding: const EdgeInsets.only(
+              top: 8), // Adds space between the icon and text
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 12, // Small font size
+              fontWeight: FontWeight.w400, // Normal weight
+              color: color, // Color for text based on the theme
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
