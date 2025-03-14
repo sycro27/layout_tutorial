@@ -20,6 +20,16 @@ class MyApp extends StatelessWidget {
                 location: 'Kandersteg, Switzerland',
               ),
               ButtonSection(),
+              TextSection(
+                description:
+                    'Lake Oeschinen lies at the foot of the Blüemlisalp in the '
+                    'Bernese Alps. Situated 1,578 meters above sea level, it '
+                    'is one of the larger Alpine Lakes. A gondola ride from '
+                    'Kandersteg, followed by a half-hour walk through pastures '
+                    'and pine forest, leads you to the lake, which warms to 20 '
+                    'degrees Celsius in the summer. Activities enjoyed here '
+                    'include rowing, and riding the summer toboggan run.',
+              ),
             ],
           ),
         ),
@@ -100,24 +110,36 @@ class ButtonWithText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize:
-          MainAxisSize.min, // Keeps the column size to the minimum needed
-      mainAxisAlignment: MainAxisAlignment.center, // Centers items vertically
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(icon, color: color), // Display the icon
+        Icon(icon, color: color),
         Padding(
-          padding: const EdgeInsets.only(
-              top: 8), // Adds space between the icon and text
+          padding: const EdgeInsets.only(top: 8),
           child: Text(
             label,
             style: TextStyle(
-              fontSize: 12, // Small font size
-              fontWeight: FontWeight.w400, // Normal weight
-              color: color, // Color for text based on the theme
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+              color: color,
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class TextSection extends StatelessWidget {
+  const TextSection({super.key, required this.description});
+
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32),
+      child: Text(description, softWrap: true),
     );
   }
 }
