@@ -1,19 +1,58 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+void main() => runApp(const MyApp());
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    const String appTitle = 'Flutter layout demo';
+    return MaterialApp(
+      title: appTitle,
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+        appBar: AppBar(title: const Text(appTitle)),
+        body: const Center(
+          child: Text('Hello World'),
         ),
+      ),
+    );
+  }
+}
+
+class TitleSection extends StatelessWidget {
+  const TitleSection({super.key, required this.name, required this.location});
+
+  final String name;
+  final String location;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32),
+      child: Row(
+        children: [
+          Expanded(
+            /*1*/
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /*2*/
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    name,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Text(location, style: TextStyle(color: Colors.grey[500])),
+              ],
+            ),
+          ),
+          /*3*/
+          Icon(Icons.star, color: Colors.red[500]),
+          const Text('41'),
+        ],
       ),
     );
   }
